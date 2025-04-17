@@ -1,4 +1,5 @@
-﻿﻿[![NuGet Downloads][nuget-shield]][nuget-url][![Contributors][contributors-shield]][contributors-url][![Forks][forks-shield]][forks-url][![Stargazers][stars-shield]][stars-url][![Issues][issues-shield]][issues-url][![License][license-shield]][license-url][![LinkedIn][linkedin-shield]][linkedin-url]
+﻿﻿[![NuGet Downloads][nuget-shield]][nuget-url][![Contributors][contributors-shield]][contributors-url][![Forks][forks-shield]][forks-url][![Stargazers][stars-shield]][stars-url][![Issues][issues-shield]][issues-url][![License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 # ![Logo][Logo] Form Library
 Form library for .NET applications
@@ -116,7 +117,7 @@ Jens Tirsvad Nielsen - [LinkedIn][linkedin-url]
 [nuget-shield]: https://img.shields.io/nuget/dt/TirsvadCLI.PfxCertificateManager?style=for-the-badge
 [nuget-url]: https://www.nuget.org/packages/TirsvadCLI.PfxCertificateManager/
 
-[Logo]: https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/master/image/logo/32x32/logo.png
+[Logo]: https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/main/image/logo/32x32/logo.png
 
-[Screenshot1]: https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/master/image/small/Screenshot1.png]
-[Screenshot1-url]: https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/master/image/Screenshot1.png
+[Screenshot1]: https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/main/image/small/Screenshot1.png
+[Screenshot1-url]: https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/main/image/Screenshot1.png
