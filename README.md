@@ -1,10 +1,9 @@
-﻿﻿[![NuGet Downloads][nuget-shield]][nuget-url][![Contributors][contributors-shield]][contributors-url][![Forks][forks-shield]][forks-url][![Stargazers][stars-shield]][stars-url][![Issues][issues-shield]][issues-url][![License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![NuGet Downloads][nuget-shield]][nuget-url][![Contributors][contributors-shield]][contributors-url][![Forks][forks-shield]][forks-url][![Stargazers][stars-shield]][stars-url][![Issues][issues-shield]][issues-url][![License][license-shield]][license-url][![LinkedIn][linkedin-shield]][linkedin-url]
 
-# ![Logo][Logo] Form Library
+# ![logo][logo] Form Library
 Form library for .NET applications
 
-[![Screenshot 1][Screenshot1]][Screenshot1-url]
+[![screenshot 1][screenshot1]][screenshot1-url]
 
 ## Table of Contents 
 - [Overview](#overview)
@@ -15,6 +14,7 @@ Form library for .NET applications
     - [Install via NuGet Package Manager Console](#install-via-nuget-package-manager-console)
     - [Install via Visual Studio NuGet Package Manager](#install-via-visual-studio-nuget-package-manager)
     - [Install via .NET CLI](#install-via-dotnet-cli)
+    - [Clone the repo](#clone-the-repo)
   - [Example Usage](#example-usage)
 - [Contributing](#contributing)
 - [Bug / Issue Reporting](#bug--issue-reporting)
@@ -35,10 +35,8 @@ To get started with the Form library, you will need to install the library in yo
 ### Prerequisites
 - .NET 9.0 or later
 
-## Usage
+## Installation
 To use the Form library, you will need to download and then add a reference to the library in your project. Follow the instructions below to install the library and get started.
-
-### Installation
 
 #### Install via NuGet Package Manager Console
 You can install the Form library using the NuGet Package Manager Console. Open the console and run the following command:
@@ -58,8 +56,17 @@ You can also install the Form library using the .NET CLI. Open a terminal and ru
 dotnet add package TirsvadCLI.Form
 ```
 
+#### Clone the repo
+![Repo size][repos-size-shield]
+
+If you want to clone the repository and build the library from source, you can do so using Git. Make sure you have Git installed on your machine. Then, run the following command in your terminal:
+
+```bash
+git clone git@github.com:TirsvadCLI/Dotnet.Lib.Form.git
+```
+
 ### Example Usage
-See [here](https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/master/src/Example.Example.cs)
+See [here](https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/master/src/Example/Example.cs)
 
 
 ## Contributing
@@ -114,10 +121,14 @@ Jens Tirsvad Nielsen - [LinkedIn][linkedin-url]
 [license-url]: https://github.com/TirsvadCLI/Dotnet.Lib.Form/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/jens-tirsvad-nielsen-13b795b9/
-[nuget-shield]: https://img.shields.io/nuget/dt/TirsvadCLI.PfxCertificateManager?style=for-the-badge
-[nuget-url]: https://www.nuget.org/packages/TirsvadCLI.PfxCertificateManager/
+[repos-size-shield]: https://img.shields.io/github/repo-size/TirsvadCLI/Dotnet.Lib.Form?style=for-the-badg
 
-[Logo]: https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/main/image/logo/32x32/logo.png
+[nuget-shield]: https://img.shields.io/nuget/dt/TirsvadCLI.Form?style=for-the-badge
+[nuget-url]: https://www.nuget.org/packages/TirsvadCLI.Form/
 
-[Screenshot1]: https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/main/image/small/Screenshot1.png
-[Screenshot1-url]: https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/main/image/Screenshot1.png
+[logo]: https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/main/image/logo/32x32/logo.png
+
+[screenshot1]: https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/main/image/small/Screenshot1.png
+[screenshot1-url]: https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/main/image/Screenshot1.png
+
+[example-url]: https://raw.githubusercontent.com/TirsvadCLI/Dotnet.Lib.Form/master/src/Example/Examples.cs

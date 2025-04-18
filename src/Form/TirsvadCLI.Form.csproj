@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>net9.0</TargetFramework>
@@ -14,7 +14,7 @@
     <PackageIcon>logo.png</PackageIcon>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/TirsvadCLI/Dotnet.Lib.Form</RepositoryUrl>
-    <PackageTags>Console</PackageTags>
+    <PackageTags>Form;Console;Library</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Description>Create nice forms for console.</Description>
@@ -24,7 +24,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\..\image\logo\64x64\logo.png">
+    <None Include="..\..\image\logo\128x128\logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
