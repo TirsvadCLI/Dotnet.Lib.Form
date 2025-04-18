@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup>
-    <VersionPrefix>0.1.1</VersionPrefix>
+    <VersionPrefix>0.1.2</VersionPrefix>
     <PackageId>$(AssemblyName)</PackageId>
     <Title>Form for console</Title>
     <Authors>Jens Tirsvad Nielsen</Authors>
