@@ -82,7 +82,7 @@ Contributions are what make the open-source community such an amazing place to l
 If you encounter a bug or have an issue to report, please follow these steps:  
 
 1. **Go to the Issues Page**  
-  Navigate to the [GitHub Issues page](https://github.com/TirsvadCLI/Dotnet.Lib.Form/issues).  
+  Navigate to the [GitHub Issues page][githubIssue-url].
 
 2. **Click "New Issue"**  
   Click the green **"New Issue"** button to create a new issue.  
@@ -121,6 +121,7 @@ Jens Tirsvad Nielsen - [LinkedIn][linkedin-url]
 [license-url]: https://github.com/TirsvadCLI/Dotnet.Lib.Form/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/jens-tirsvad-nielsen-13b795b9/
+[githubIssue-url]: https://github.com/TirsvadCLI/Dotnet.Lib.Form/issues/
 [repos-size-shield]: https://img.shields.io/github/repo-size/TirsvadCLI/Dotnet.Lib.Form?style=for-the-badg
 
 [nuget-shield]: https://img.shields.io/nuget/dt/TirsvadCLI.Form?style=for-the-badge
