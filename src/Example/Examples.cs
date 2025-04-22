@@ -1,4 +1,4 @@
-﻿namespace Example;
+namespace Example;
 
 using TirsvadCLI.Form;
 using TirsvadCLI.Form.Model;
@@ -12,8 +12,6 @@ internal class Examples
     static string? _name;
     static int? _age;
     static string? _password;
-    static List<string> _errorMessages = [];
-
     /// <summary>
     /// Simple example of how to use the form
     /// </summary>
@@ -25,36 +23,39 @@ internal class Examples
                new ("Age", _age?.ToString() ?? "", 3), // Added default value for age and input size
                new ("Password", _password ?? "", 20, true) // Added default value for password and input size
            };
-
         var form = new Form(fields); // Create a new form with the fields
-        var result = form.Run(); // Run the form and get the result
-
-        // Loop through the fields, validate and set the values
-        // Validation could be done in methods but for simplify it is done here
-        foreach (var field in result)
+        form.ErrorMessage ??= new List<string>();
+        do
         {
-            switch (field.Name)
+            Console.WriteLine("Example 1 with validation for age\n");
+            var result = form.Run(); // Run the form and get the result
+            form.ErrorMessage.Clear(); // Clear the error message list
+            // Loop through the fields, validate and set the values
+            // Validation could be done in methods but for simplify it is done here
+            foreach (var field in result)
             {
-                case "Name":
-                    _name = field.Value;
-                    break;
-                case "Age":
-                    if (int.TryParse(field.Value, out var parsedAge))
+                switch (field.Name)
+                {
+                    case "Name":
+                        _name = _ = field.Value;
+                        break;
+                    case "Age":
+                        if (int.TryParse(field.Value, out var parsedAge))
+                            _age = _ = parsedAge;
+                        else
+                            form.ErrorMessage.Add("Age is an invalid age format. Please enter a number.");
                         _age = parsedAge;
-                    else
-                        _errorMessages.Add("Age is an invalid age format. Please enter a number.");
-                    _age = parsedAge;
-                    break;
-                case "Password":
-                    _password = field.Value;
-                    break;
+                        break;
+                    case "Password":
+                        _password = _ = field.Value;
+                        break;
+                }
             }
-            // Check if any error messages were added
-            if (_errorMessages.Count == 0)
-                break; // Exit the loop if no errors
-            else
-                form.ErrorMessage = _errorMessages; // Set the error message to display
-        }
+            // Check if any error messages where added
+            if (form.ErrorMessage.Count == 0)
+                return; // Exit the loop if no errors
+            Console.Clear(); // Clear the console if there are errors
+        } while (true); // Loop until the form is valid
     }
 
     static void Main(string[] args)

@@ -1,4 +1,4 @@
-﻿namespace TirsvadCLI.Form;
+namespace TirsvadCLI.Form;
 
 using TirsvadCLI.Form.Model;
 
@@ -9,18 +9,20 @@ public class Form
     private int _currentField;
     private int _maxLengthOfField;
     private int _cTop;
+    private int _cTopInoutFields;
     private ConsoleColor _fieldColorFg = ConsoleColor.DarkCyan;
     private ConsoleColor _fieldColorBg = ConsoleColor.Black;
     private ConsoleColor _inputColorFg = ConsoleColor.DarkYellow;
     private ConsoleColor _inputColorBg = ConsoleColor.DarkBlue;
     private ConsoleColor _inputActiveColorFg = ConsoleColor.DarkYellow;
     private ConsoleColor _inputActiveColorBg = ConsoleColor.DarkBlue;
-    public IEnumerable<string>? ErrorMessage { get; set; } = [];// Error message to display
+    public ICollection<string>? ErrorMessage { get; set; } = []; // Error message to display.
 
     public Form(List<FormField> fields)
     {
         _fields = fields;
         _inputs = new string[fields.Count];
+        ErrorMessage = [];
 
         for (int i = 0; i < fields.Count; i++)
             _inputs[i] = fields[i].Value;
@@ -28,40 +30,52 @@ public class Form
 
     public List<FormField> Run()
     {
+        _cTop = Console.CursorTop; // Save the current cursor position.
+        // Get the maximum length of the field names.
         for (int i = 0; i < _fields.Count; i++)
         {
             if (_fields[i].Name.Length > _maxLengthOfField)
-                _maxLengthOfField = _fields[i].Name.Length; // Find the maximum length of the fields
+                _maxLengthOfField = _fields[i].Name.Length; // Find the maximum length of the fields.
         }
-        //DisplayForm();
-        InputField();
-        DisplayFinalInput();
+        // The form and input fields logic.
+        do
+        {
+            Console.SetCursorPosition(0, _cTop); // Set cursor position to the top of the console.
+            // Clear from the current line to the bottom of the console.
+            for (int i = _cTop; i < Console.WindowHeight; i++)
+            {
+                Console.Write(new string(' ', Console.WindowWidth - 1));
+            }
+            Console.SetCursorPosition(0, _cTop); // Reset cursor position to the top.
+
+            if (ErrorMessage.Any())
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                foreach (var line in ErrorMessage)
+                {
+                    Console.WriteLine(line);
+                }
+                Console.WriteLine();
+                Console.ResetColor();
+            }
+
+            _cTopInoutFields = Console.CursorTop + 1; // Set the top position for input fields.
+
+            DisplayForm();
+        } while (!InputField());
+
         for (int i = 0; i < _fields.Count; i++)
         {
-            _fields[i].Value = _inputs[i]; // Update the default value with the input
+            _fields[i].Value = _inputs[i]; // Update the default value with the input.
         }
         return _fields;
     }
 
     private void DisplayForm()
     {
-        Console.Clear();
-
-        if (ErrorMessage.Any())
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            foreach (var line in ErrorMessage)
-            {
-                Console.WriteLine(line);
-            }
-            Console.WriteLine();
-            Console.ResetColor();
-        }
-
-        _cTop = Console.CursorTop;
-
         for (int i = 0; i < _fields.Count; i++)
         {
+            Console.SetCursorPosition(0, _cTopInoutFields + i); // Set cursor position for each field.
             Console.ForegroundColor = _fieldColorFg;
             Console.BackgroundColor = _fieldColorBg;
             Console.Write($"{_fields[i].Name}: ");
@@ -90,46 +104,51 @@ public class Form
 
     private bool InputField()
     {
-        while (true)
-        {
-            DisplayForm(); // Refresh view
-            Console.SetCursorPosition(_maxLengthOfField + 2 + _inputs[_currentField].Length, _cTop + _currentField);
-            Console.CursorVisible = true;
-            ConsoleKeyInfo key = Console.ReadKey(true);
-            Console.CursorVisible = false;
+        Console.SetCursorPosition(_maxLengthOfField + 2 + _inputs[_currentField].Length, _cTopInoutFields + _currentField);
+        Console.CursorVisible = true;
+        ConsoleKeyInfo key = Console.ReadKey(true);
+        Console.CursorVisible = false;
 
-            switch (key.Key)
-            {
-                case ConsoleKey.F1:
-                    Console.Clear();
-                    Console.WriteLine("Help: Use arrow keys to navigate, Enter to select, Backspace to delete, F10 to save and exit, ESC to cancel.");
-                    Console.ReadKey(true); // Wait for a key press
-                    break;
-                case ConsoleKey.F10:
-                    return true; // Save and exit
-                case ConsoleKey.Escape:
-                    return false; // Cancel
-                case ConsoleKey.Enter:
-                case ConsoleKey.Tab:
-                case ConsoleKey.DownArrow:
-                    _currentField = (_currentField < _fields.Count - 1) ? _currentField + 1 : 0;
-                    break;
-                case ConsoleKey.UpArrow:
-                    _currentField = (_currentField > 0) ? _currentField - 1 : _fields.Count - 1;
-                    break;
-                case ConsoleKey.Backspace:
-                    if (_inputs[_currentField].Length > 0)
-                    {
-                        _inputs[_currentField] = _inputs[_currentField][..^1]; // Remove last character
-                    }
-                    break;
-                default:
-                    if (!char.IsControl(key.KeyChar) && _inputs[_currentField].Length < _fields[_currentField].MaxLength)
-                    {
-                        _inputs[_currentField] += key.KeyChar;
-                    }
-                    break;
-            }
+        switch (key.Key)
+        {
+            case ConsoleKey.F1:
+                Console.Clear();
+                Console.WriteLine("Help: Use arrow keys to navigate, Enter to select, Backspace to delete, F10 to save and exit, ESC to cancel.");
+                Console.ReadKey(true); // Wait for a key press
+                Console.SetCursorPosition(0, _cTop); // Reset cursor position to the top.
+                return false;
+            case ConsoleKey.F10:
+                return true; // Save and exit
+            case ConsoleKey.Escape:
+                for (int i = 0; i < _fields.Count; i++)
+                {
+                    _inputs[i] = _fields[i].Value; // Restore original values
+                }
+                return true; // Cancel
+            case ConsoleKey.Enter:
+            case ConsoleKey.Tab:
+            case ConsoleKey.DownArrow:
+                _currentField = (_currentField < _fields.Count - 1) ? _currentField + 1 : 0;
+                Console.SetCursorPosition(0, _cTop); // Reset cursor position to the top.
+                return false;
+            case ConsoleKey.UpArrow:
+                _currentField = (_currentField > 0) ? _currentField - 1 : _fields.Count - 1;
+                Console.SetCursorPosition(0, _cTop); // Reset cursor position to the top.
+                return false;
+            case ConsoleKey.Backspace:
+                if (_inputs[_currentField].Length > 0)
+                {
+                    _inputs[_currentField] = _inputs[_currentField][..^1]; // Remove last character
+                }
+                Console.SetCursorPosition(0, _cTop); // Reset cursor position to the top.
+                return false;
+            default:
+                if (!char.IsControl(key.KeyChar) && _inputs[_currentField].Length < _fields[_currentField].MaxLength)
+                {
+                    _inputs[_currentField] += key.KeyChar;
+                }
+                Console.SetCursorPosition(0, _cTop); // Reset cursor position to the top.
+                return false;
         }
     }
 
@@ -177,7 +196,7 @@ public class Form
         return password;
     }
 
-    private void DisplayFinalInput()
+    public void DisplayFinalInput()
     {
         Console.Clear();
         Console.WriteLine("Final Input:");
